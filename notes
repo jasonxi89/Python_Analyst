@@ -66,4 +66,28 @@ val partitioner: Option[Partitioner] = None 特性四
 
 
 第一要务：创建SparkContext
-     连接到spark集群：local，standalone,yarn,mesos,
+     连接到spark集群：local，standalone,yarn,mesos
+     通过SparkContext来创建RDD、广播变量到集群
+
+  在创建SparkContext之前还需要创建一个SparkConf对象
+
+  RDD创建方式：
+    Parallelized Collections
+    External Datasets
+
+  If using a path on the local filesystem, the file must also be accessible at othersame path on worker nodes
+    1.我们上课是在单节点上的：一个节点，hello.txt只要在这台机器上有就行了
+    2.standalone:Spark集群：3个节点，local path都是从节点的本地读取数据
+    所以用网络的文件最好>>> lines = sc.textFile("hdfs://localhost:9000/user/hadoop/word.txt")
+
+
+开发Pyspark应用程序
+  1）IDE：IDEA pycharm
+  2) 设置基本参数：
+      环境增加SPARK_HOME，Python interceptor, PYTHONPATH, 2个zip包
+  3）开发
+  4）使用LOCAL进行本地测试
+
+提交pyspark应用程序($spark_HOME)
+    ./spark-submit --master local[2] --name spark0301 /home/hadoop/script/spark0301.py
+    具体提交的相信说明参见：http://spark.apache.org/docs/latest/submitting-applications.html
