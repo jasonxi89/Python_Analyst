@@ -1,0 +1,65 @@
+spark souce code:github.com/apache/spark
+
+RDD: A Resilient Distributed Dataset(RDD), basic abstraction in Spark. Represents an immutable,
+partitioned collection of elements that can be opertaed on in parallel. This class contains the
+basic operations available on all RDDs, such as 'map', 'filter', and 'persist'
+
+1.RDD是一个抽象类：
+  不能直接使用，子类实现
+
+2.带泛型，可以支持多种类型：String, person, user
+
+3.
+
+RDD: A Resilient Distributed Dataset(RDD) 弹性 分布式 数据集
+弹性: 容错，比如说一个节点挂了，他可以自动修复
+分布式：跨节点分布式运行
+数据集：一个集合
+    immutable：不可变
+    partitioned collection of elements：分区
+        Array(1,2,3,4,5,6,7,8,9,10) 3个分区 (1,2,3),(4,5,6),(7,8,9,10)
+    that can be opertaed on in parallel. 并行计算的问题
+
+
+单机存储/计算  ==> 分布式存储/计算
+1)数据的存储：切割   HDFS的Block
+2)数据的计算：切割（分布式并行计算）  MapReduce/Spark
+3)存储+计算:  HDFS/S3 + MapReduce/Spark
+
+
+
+RDD的特性：
+Internally, each RDD is characterized by five main properties:
+  - A list of partitions
+    一系列的分区/分片：HDFS一个文件由多个BLOCK构成
+
+  - A function for computing each split/partition
+    对RDD执行函数，其实就是对这个RDD里所有的分区执行相同的函数的操作
+    y = f(x)
+    rdd.map(_+1)
+
+  - A list of dependencies on other RDDs
+    rdd1 ==> rdd2 ==> rdd3 ==> rdd4
+    rdd存在于依赖关系
+
+    rddA = 5个partition
+    ==> map
+    rddB = 5个partition
+    如果计算rddA里面第三个分区丢了，那根据依赖关系，重新计算rddA的第三分区（不是全部分区）
+
+
+
+  - Optionally, a Partitioner for key-value RDDs (e.g. to say that the RDD is hash-partitioned)
+    分区策略
+
+  - Optionally, a list of preferred locations to compute each split on (e.g. block locations for
+    an HDFS file)
+    数据在哪，优先把作业调度到数据所在的节点进行计算：移动数据不如移动计算
+
+
+五大特性源码体现：
+def compute(split: Partition， context: TaskContext): Iterator[T] 特性二
+protected def getPartitions: Array[Partition] 特性一
+protected def getDependencies: Seq[Dependency[_]] = deps 特性三
+protected def getPrefferedLocations(split: Partition): Seq[String] = Nil 特性�五
+val partitioner: Option[Partitioner] = None 特性四
