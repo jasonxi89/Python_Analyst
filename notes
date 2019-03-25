@@ -63,3 +63,7 @@ protected def getPartitions: Array[Partition] 特性一
 protected def getDependencies: Seq[Dependency[_]] = deps 特性三
 protected def getPrefferedLocations(split: Partition): Seq[String] = Nil 特性�五
 val partitioner: Option[Partitioner] = None 特性四
+
+
+第一要务：创建SparkContext
+     连接到spark集群：local，standalone,yarn,mesos,

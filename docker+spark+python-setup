@@ -1,0 +1,13 @@
+环境搭建顺序：
+
+1.搞定spark
+https://github.com/big-data-europe/docker-spark
+https://github.com/big-data-europe/app-bde-pipeline
+
+2.运行
+git clone https://github.com/big-data-europe/app-bde-pipeline.git
+cd app-bde-pipeline
+docker-compose up -d
+
+3.查看状态
+自己的IP地址:8080
