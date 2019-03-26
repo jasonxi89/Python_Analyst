@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94b25b39-3741-4208-8f23-0216e584f4b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Spark/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Spark/spark.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spark/spark.py" beforeDir="false" afterPath="$PROJECT_DIR$/Spark/spark.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +12,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Python_Analyst$testcase.coverage" NAME="testcase Coverage Results" MODIFIED="1548196123248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Words_Analyst" />
+    <SUITE FILE_PATH="coverage/Python_Analyst$spark.coverage" NAME="spark Coverage Results" MODIFIED="1553558290847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Spark" />
     <SUITE FILE_PATH="coverage/Python_Analyst$lgDataCatch_Analyst.coverage" NAME="lgDataCatch&amp;Analyst Coverage Results" MODIFIED="1548283456009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LgDataCatch&amp;Analyst" />
     <SUITE FILE_PATH="coverage/Python_Analyst$wordAnalyst.coverage" NAME="wordAnalyst Coverage Results" MODIFIED="1548197343627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Words_Analyst" />
   </component>
@@ -22,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Spark/spark.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+            <state relative-caret-position="270">
+              <caret line="18" column="49" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -112,7 +111,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.lgDataCatch&amp;Analyst">
+  <component name="RunManager" selected="Python.spark">
     <configuration name="lgDataCatch&amp;Analyst" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Python_Analyst" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -127,6 +126,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LgDataCatch&amp;Analyst/lgDataCatch&amp;Analyst.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="spark" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Python_Analyst" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Spark" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Spark/spark.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -183,9 +204,11 @@
       <item itemvalue="Python.lgDataCatch&amp;Analyst" />
       <item itemvalue="Python.testcase" />
       <item itemvalue="Python.wordAnalyst" />
+      <item itemvalue="Python.spark" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.spark" />
         <item itemvalue="Python.lgDataCatch&amp;Analyst" />
         <item itemvalue="Python.wordAnalyst" />
         <item itemvalue="Python.testcase" />
@@ -207,23 +230,23 @@
       <workItem from="1548283117357" duration="1915000" />
       <workItem from="1548374638083" duration="83000" />
       <workItem from="1551219250289" duration="800000" />
-      <workItem from="1553550137797" duration="377000" />
+      <workItem from="1553550137797" duration="1252000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18530000" />
+    <option name="totallyTimeSpent" value="19405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21916972" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21916972" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3298969" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32959184" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39977092" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -277,8 +300,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Spark/spark.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        <state relative-caret-position="270">
+          <caret line="18" column="49" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="49" />
         </state>
       </provider>
     </entry>

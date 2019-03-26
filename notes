@@ -91,3 +91,171 @@ val partitioner: Option[Partitioner] = None 特性四
 提交pyspark应用程序($spark_HOME)
     ./spark-submit --master local[2] --name spark0301 /home/hadoop/script/spark0301.py
     具体提交的相信说明参见：http://spark.apache.org/docs/latest/submitting-applications.html
+
+
+RDD常用操作(operations)：
+  - transformations: create a new dataset from an existing one
+      RDDA -- transformation --> RDDB
+
+      y = f(x)
+      rddb=rdda.map(....)
+
+
+
+      lazy:
+        只存在关系，不生成，直到下次调用
+      rdda.map().filer()......collect
+
+      map/filter/group by/distinct.....
+
+
+  - actions:
+        return a value to the driver program after running a computation on the dataset
+        count/reduce/collect....
+
+
+    1/transformation are lazy, nothing actually happens until an action is called
+    2/action trigger the cpmputation;
+    3/action returns values to driver or writes data to external storage
+
+
+map:
+    map(func)
+    将func函数作用数据集每一个元素上，生成一个新的分布式的数据集返回
+
+filter:
+    filter(func)
+    选出所有func返回值为true的元素，返回所有返回值为true的值
+
+flatMap:
+    flatMap(func)
+    输入的item能够被map到0或者多个items输出，返回值是一个Sequence
+    压扁输出（例如["hello world","hello python","hello spark"]
+    直接用Map输出，其实是['hello', 'world']
+                      ['hello', 'sql']
+                      ['hello', 'spark']
+    拍扁了用flatmap就是['hello', 'world','hello', 'sql','hello', 'spark']
+    但是flatmap只在spark里有
+
+groupByKey():
+    mapRdd.groupByKey(),数据结构一定是要有Key的！
+    把key相同的放在一起
+
+reduceByKey:
+    把key相同的放在一起，并且进行相应计算
+    maprdd.reduceByKey(lamda a,b:a+b)
+
+Python简易word count:
+    data=["xXX","XXX","XXX"]
+    priint(data.map(lambda x:(x,1)).reduceByKey(lamda a,b:a+b).collect())
+
+需求：请按WC结果中出现的次数升序排列
+    sorted(data,key=lambda x:x[1],reverse=True)
+
+    spark里有sortByKey(),但是如何用value排序？
+    map(lambda x:(x[1],x[0])).sortByKey().map(lambda x:(x[0],x[1])).collect()
+    想法就是：各种用map进行输出转换
+
+union:
+    a = sc.parallelize([1,2,3])
+    b = sc.parallelize([3,4,5])
+    a.union(b).collect()
+    ==> [1,2,3,3,4,5]
+
+distinct:
+    a = sc.parallelize([1,2,3])
+    b = sc.parallelize([3,4,5])
+    a.union(b).distinct().collect()
+    ==> [1,2,3,4,5]
+
+join:
+    inner join: a.join(b).collect()
+    left join: a.leftOuterJoin(b).collect()  PS:如果B没有，就会变NONE("c",(A的值，B的值))，NONE不能省略
+    right join: a.rightOuterJoin(b).collect()
+
+
+RDD常用actions：
+    collect, count, take, reduce, saveAsTextFile, foreach
+
+
+词频分析案例：WC
+    1.input : 1/n文件，文件夹， 后缀名
+      hello spark
+      hello hadoop
+      hello welcome
+    2.开发步骤：
+      文本内容的每一行转成一个个的单词: flatMap
+      单词 ==> (单词，1)： map
+      把所有相同单词的技术相加得到最终的结果: reduceByKey
+
+      if len(sys.argv) !=2
+        print("Usage: wordcount <input>",file = sys.stderr)
+        sys.exit(-1)
+
+      conf = SparkConf()
+      sc = SparkContext( conf = conf )
+
+
+      def printResult():
+        counts = sc.textFile(sys.argv[1])\
+          .flatMap(lambda line:line.split('\t'))\
+          .map(lambda x:(x,1)).reduceByKey(lambda a,b:a + b)
+
+        output = counts.collect()
+        for (word, count) in output:
+          print("%s: %i " % (word, count))
+
+
+      def saveFile():
+        counts = sc.textFile(sys.argv[1])\
+          .flatMap(lambda line:line.split('\t'))\
+          .map(lambda x:(x,1)).reduceByKey(lambda a,b:a + b)\
+          .saveAsTextFile(sys.argv[2])
+
+      sc.stop()
+
+TopN:
+      1.input : 1/n文件，文件夹， 后缀名
+      2.求某个维度的TopN
+      3.开发步骤：
+          文本内容的每一行根据需求提出你所需要的字段：map
+          单词 ==> （单词,1):map
+          把所有相同单词的计数相加得到最终的结果:reduceByKey
+          取最多出现次数的降序：sortByKey
+
+
+      if len(sys.argv) !=2
+        print("Usage: TopN <input>",file = sys.stderr)
+        sys.exit(-1)
+
+      conf = SparkConf()
+      sc = SparkContext( conf = conf )
+
+      coounts = sc.textFile(sys.argv[1])\
+          .map(lambda x:x.split('\t'))\
+          .map(lambda x:(x[5],1))\
+          .reduceByKey(lambda a,b: a+b)\
+          .map(lambda x:(x[1],x[0]))\
+          .sortByKey(False)\
+          .map(lambda x:(x[1],x[0])).take(5)
+      sc.stop()
+
+
+平均数：统计平均年龄
+      开发步骤分析：
+        1.取出年龄 map
+        2.计算年龄总和 reduce
+        3.计算记录总数 count
+        4.计算平均数
+
+
+        if len(sys.argv) !=2
+          print("Usage: TopN <input>",file = sys.stderr)
+          sys.exit(-1)
+
+        conf = SparkConf()
+        sc = SparkContext( conf = conf )
+        ageData = sc.textFile(sys.argv[1]).map(lambda x:x.split(" ")[1])
+        totalAge = ageData.map(lamda age:int(age)).reduce(lambda a,b:a+b)
+        counts = ageData.count()
+        avgAge = totalAge/counts
