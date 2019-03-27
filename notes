@@ -259,3 +259,91 @@ TopN:
         totalAge = ageData.map(lamda age:int(age)).reduce(lambda a,b:a+b)
         counts = ageData.count()
         avgAge = totalAge/counts
+
+
+Spark特性
+    Application : 基于Spark的应用程序 = 1 driver + executors
+        User program build on Spark.
+        Consists of a dtiver program and executors on the cluster.
+        pyspark/spark-shell 就是应用程序
+
+    Driver program:
+        The process running the main() function of the application creating the SparkContext
+
+    Cluster manager: 申请资源
+         An external service for acquireing resources onthe cluster (standalone, yarn)
+         spark-submit --master local[2]/spark://hadoop000:7077/yarn
+
+    Deploy mode: 运行模式, 本地就是client，集群就是cluster
+        Distinguishes where the driver process runs.
+        In "cluster" mode, the framework launches the driver inside of the cluster.
+        In "client" mode, the submitted launches the driver outside of the cluster.
+
+    Worker node:
+        Any node that can run application code in the Cluster
+        standalone: slave节点 salves配置文件
+        yarn: nodemanager
+
+    executor:
+        A process launched for an application on a woker node
+        run tasks
+        keeps data in memory or disk storage across them
+        each application has its own executors
+
+    Task:
+        A unit of work that will be sent to one executor
+
+    Job:
+        A parallel computation consisting of multiple tasks that
+        gets spawned in response to a Spark action(e.g. save, collect);
+        you'll see this term used in the driver's logs.
+        一个action对应一个job
+
+    Stage:
+        Each job gets divided into smaller sets of tasks called stages
+        that depend on each other
+        (similar to the map and reduce stages in MapReduce);
+        you'll see this term used in the driver's logs.
+        一个stage的边界往往是从某个取数据开始，到shuffle结束。
+
+    spark和hadoop的重要区别：
+    Hadoop
+        1.一个MR程序 = 一个JOB
+        2.一个JOB = 一个N个TASK（Map/Reduce)
+        3.一个Task对应于一个进程
+        4.Task运行时开启进程，Task执行完毕后销毁进程，对于多个Task来说
+          开销是比较大的（即便通过JMV共享）
+    Spark
+        1.Application = Driver(main方法中创建sparkContext) + Executors
+        2.一个Application = 0到多个JOB
+        3.一个JOB = 1个ACTION
+        4.一个JOB = 1到N个Stage
+        5.一个Stage = 1到N个Task
+        6.一个Task对应一个线程，多个Task可以以并行的方式运行在一个Executor进程中
+
+Spark Cache()
+    rdd.cache():Storagelevel
+
+    cache和transformation : Lazy机制，没有遇到action是不会提交作业到spark上运行的
+
+    如果一个RDD在后续的计算中可能会被使用到，那么建议cache
+    两次count行数，步骤：
+    1.从文件系统读数据
+    2.第一次count
+    3.第二次count
+    不缓存的场景：有多少次action就会读多少次disk上的数据
+    有缓存：直接从cache读，减少磁盘IO
+RDD Persisting/caching：
+    cache底层调用了persist方法，传入的参数是Storagelevel.MEMORY_ONLY
+    cache = persist
+        使用方法：lines.persist(Storagelevel.MEMORY_ONLY_2)
+    手动删除缓存方式.unpersist, spark自动采用LRU（Least recently used)处理缓存
+    unpersist:立刻执行，不是LAZY的
+
+    缓存策略机制：MEMORY_ONLY > MEMORY_ONLY_SER > 硬盘， 如果想快速错误recovery, 使用副本
+
+Spark Lineage:RDD之间的依赖关系
+    HDFS -> filter -> map -> 其他算子 ->
+
+窄(Narrow)依赖：一个父RDD的partition之多被子RDD的某个partition使用一次。父RDD是指靠前的RDD，可以做pipeline-able
+宽(Wide)依赖：一个父RDD的partition会被子RDD的partition使用多次，有shuffle
