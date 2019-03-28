@@ -412,6 +412,67 @@ Shark: on Spark
 
 Spark SQL: on Spark
 
-Hive on Spark:
+Hive on Spark: 底层Hive
 
-共同点： metastore MySQL, 
+共同点： metastore(表的源数据信息) MySQL,
+
+Spark SQL概述：
+     Apache Spark's module for working with structured data.
+     1.Integrated：集成
+        可以用SQL语句 或者 DATAFRAME API
+     2.Uniform Data Access： 统一的链接
+        访问各种数据源/join different data sources.
+     3.Hive Integration:
+        Run SQL or HiveQL queries on existing warehouses
+     4.Standard Connectivity:
+        JDBC/ODBC
+
+     Spark SQL不仅仅是SQL这么简单的事情，它还能做更多的事情
+        Hive:SQL只是查询，底层架构完全不一样
+        Spark SQL:不仅仅是SQL，还有DataFrame API，Dataset API
+
+     一个用于处理结构化数据的spark组件，强调的是“结构化数据”，而非”SQL“
+
+     Datasets and DataFrames:
+        Dataset: a distributed collection of data. Python not supported.
+
+        DataFrame: is a Dataset organized into named columns
+        以列的方式构成分布式的数据集
+
+        面试题：RDD与DataFrame的区别
+        https://www.zhihu.com/question/48684460
+
+
+Spark Streaming:
+     is an exgension of the core Spark API
+     enables scalable, high-throughtput, fault-tolerant
+     steam processing of live data streams
+
+     基于RDD，spark core的扩展，一个流处理
+
+     Streaming: Input/ Output
+        Input: Kafka, Flume, Kinesis, or TCP sockets,
+        Output: filesystems(HDFS), databases, and live dashboards
+
+
+     常用实时流处理框架对比：
+        Storm: 真正的流处理 Tuple
+        Spark Streaming: 并不是真正的实时流处理，而是一个mini batch操作
+        Flink: 实时流处理，和spark底层相反
+        kafak Stream:
+
+
+     Spark Streaming:
+        receives live input data streams and
+        divides the data into batches, which are
+        then processed by the Spark engine to
+        generate the final stream of results in batches.
+
+      Spark Core的核心抽象：RDD，五大特性，对应源码中的5个方法是什么
+      Spark Streaming的核心抽象叫：DStream
+          represents a continuous stream of data.
+          DStreams can be created either from input data streams from sources such as Kafka, Flume, and Kinesis,
+          or by applying high-level operations on other DStreams.
+          Internally, a DStream is represented as a sequence of RDDs.
+
+      
