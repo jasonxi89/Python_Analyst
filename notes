@@ -475,4 +475,84 @@ Spark Streaming:
           or by applying high-level operations on other DStreams.
           Internally, a DStream is represented as a sequence of RDDs.
 
-      
+      StreamingContext
+
+
+项目实战：
+大数据项目开发流程：
+1.调研
+    业务为导向
+2.需求分析
+    项目的需求
+       显式需求
+       隐式需求
+    甘特图：项目周期管理
+3.方案设计
+    概要设计
+    详细设计
+        基本要求
+        系统要求：扩展性、容错性、高可用（HDFS YARN）、定制化
+4.功能开发
+    开发
+    单元测试 junit
+5.测试
+    测试环境 QA
+    功能、性能、压力
+    用户测试
+6.部署上线
+    试运行 DIFF ”双活“
+    正式上线
+7.运维
+    7 * 24
+8.后期迭代开发
+
+大数据企业级应用：
+  1.数据分析
+      数据平台：
+          商业：友盟(umeng)
+          自研：
+  2.搜索/引擎
+      Lucene/Solr/ELK
+  3.机器学期
+  4.精准营销
+  5.人工智能
+
+
+企业级大数据分析平台
+  1.商业
+    费用高，数据安全，定制性低
+  2.自研
+    Apache, CDH, HDP
+    二次开发，高度定制，需要技术能力支持  
+
+
+数据量预估以及集群规划
+Q：一条日志多少、多少个字段、一天多少数据
+  300-500字节 * 1000W * 5 * 5 = 100G
+  HDFS 3副本 * 100G = 300G * （2-3年）
+
+
+服务器一台：磁盘多少 ==> Node 数量
+    集群规模：数据量 + 存储周期
+
+
+集群机器规模：
+    DN：数据量大小/每个Node的磁盘大小
+    NM: 2
+    RM: 2
+    NM: DN
+    ZK：3/5/7/9
+    GATEWAY:
+
+资源设置：cpu/memory/disk/network
+
+作业规划：
+    MapReduce/Hive/Spark
+    Server：
+    调度：AZ、OOZIE
+
+
+项目实战：
+  需求：使用PySpark分析空气质量
+  数据来源：stateair.net/web/historical/1/1.html
+  根据北京的数据进行统计分析

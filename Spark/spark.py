@@ -22,3 +22,28 @@
 #
 # spark = SparkSession.builder.appName("spark0801").getOrCreate()
 # spark.stop()
+from pyspark import SparkContext
+from pyspark.streaming import StreamingContext
+
+if __name__ == '__main__':
+    sc = SparkContext(appName="spark0901")
+    ssc = StreamingContext(sc, 5)
+
+    #TODO....根据业务需求开发自己的业务
+
+    #Define the input sources by creating input DStreams.
+    lines = ssc.socketTextStream("",9999)
+
+    # Define the streaming computations by applying transformation
+    counts = lines.flatMap(lambda line:line.split(" "))\
+                .map(lambda word:(word, 1))\
+                .reduceByKey(lambda x,y: x + y)
+
+    #output operation to Dstreams
+    counts.pprint()
+
+    #Start receiving data and processing it using streamingContext.start().
+    ssc.start()
+
+    #Wait for the processing to be stopped (manually or due to any error) using streamingContext.awaitTermination().
+    ssc.awaitTermination()

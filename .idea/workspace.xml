@@ -13,7 +13,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Python_Analyst$testcase.coverage" NAME="testcase Coverage Results" MODIFIED="1548196123248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Words_Analyst" />
-    <SUITE FILE_PATH="coverage/Python_Analyst$spark.coverage" NAME="spark Coverage Results" MODIFIED="1553558290847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Spark" />
+    <SUITE FILE_PATH="coverage/Python_Analyst$spark.coverage" NAME="spark Coverage Results" MODIFIED="1553734643119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Spark" />
     <SUITE FILE_PATH="coverage/Python_Analyst$lgDataCatch_Analyst.coverage" NAME="lgDataCatch&amp;Analyst Coverage Results" MODIFIED="1548283456009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/LgDataCatch&amp;Analyst" />
     <SUITE FILE_PATH="coverage/Python_Analyst$wordAnalyst.coverage" NAME="wordAnalyst Coverage Results" MODIFIED="1548197343627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Words_Analyst" />
   </component>
@@ -22,8 +22,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Spark/spark.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" lean-forward="true" selection-end-line="24" />
+            <state relative-caret-position="416">
+              <caret line="48" column="26" lean-forward="true" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+              <folding>
+                <element signature="e#571#603#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,10 +58,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="762" />
     <option name="y" value="23" />
     <option name="width" value="1680" />
-    <option name="height" value="961" />
+    <option name="height" value="967" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -231,15 +235,15 @@
       <workItem from="1548283117357" duration="1915000" />
       <workItem from="1548374638083" duration="83000" />
       <workItem from="1551219250289" duration="800000" />
-      <workItem from="1553550137797" duration="1661000" />
+      <workItem from="1553550137797" duration="3078000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19814000" />
+    <option name="totallyTimeSpent" value="21231000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="762" y="23" width="1680" height="967" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21916972" />
@@ -247,7 +251,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32959184" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36914286" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39977092" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -301,8 +305,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Spark/spark.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" lean-forward="true" selection-end-line="24" />
+        <state relative-caret-position="416">
+          <caret line="48" column="26" lean-forward="true" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+          <folding>
+            <element signature="e#571#603#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
