@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="94b25b39-3741-4208-8f23-0216e584f4b6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Spark/spark.py" beforeDir="false" afterPath="$PROJECT_DIR$/Spark/spark.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes" beforeDir="false" afterPath="$PROJECT_DIR$/notes" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Spark/spark.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+            <state relative-caret-position="360">
+              <caret line="24" lean-forward="true" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -230,12 +231,12 @@
       <workItem from="1548283117357" duration="1915000" />
       <workItem from="1548374638083" duration="83000" />
       <workItem from="1551219250289" duration="800000" />
-      <workItem from="1553550137797" duration="1469000" />
+      <workItem from="1553550137797" duration="1661000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19622000" />
+    <option name="totallyTimeSpent" value="19814000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -300,8 +301,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Spark/spark.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+        <state relative-caret-position="360">
+          <caret line="24" lean-forward="true" selection-end-line="24" />
         </state>
       </provider>
     </entry>

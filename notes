@@ -347,3 +347,71 @@ Spark Lineage:RDD之间的依赖关系
 
 窄(Narrow)依赖：一个父RDD的partition之多被子RDD的某个partition使用一次。父RDD是指靠前的RDD，可以做pipeline-able
 宽(Wide)依赖：一个父RDD的partition会被子RDD的partition使用多次，有shuffle
+宽依赖的容错率比较低，容错很复杂
+
+宽依赖shuffle触发：reduceByKey,各种ByKey，join，并且shuffle非常昂贵，涉及到disk I/O, data serialization, network I/O
+
+
+PySpark实战之spark优化
+    historyserver: 记录日志
+        ￥SPARK_HOME/conf/spark-default.conf
+            spark.eventLog.enable     true
+            spark.eventLog.dir        hdfs://hadoop000:8020/dictionary
+    序列化serialized：
+        1.序列化的作用：1网络传传输，进程之间相互通信
+            Java序列号：类支持好，但是慢
+            Kryo:高效，但是支持不好
+    内存管理：
+        1.对象使用了多少
+        2.访问对象使用多少
+        3.垃圾回收
+        分为两大类：Execution执行（运算），Storage存储(cache)
+        share a unified region，但是运算必要的时候，可以剔除存储，但是存储可以设个最小值
+    广播变量(Broadcast Variables):
+        sc.Broadcast Variables
+    数据本地化(data locality):
+        移动数据还是移动计算？移动计算而不是数据，因为计算比数据小很多。
+        If data and the code that operates on it are together then computation
+        tends to be fast. But if code and data are separated, one must move to the other.
+        Typically it is faster to ship serialized code from place to place than
+        a chunk of data because code size is much smaller than data. Spark builds
+        its scheduling around this general principle of data locality.
+
+        PROCESS_LOCAL > Node_LOCAL > NO_PREF > RACK_LOCAL > ANY
+
+
+Spark SQL:
+     SQL: MySQL, Oracle, DB2, SQLServer
+     很多小虎斑熟悉SQL语言
+     数据量越来越大 ==> 大数据（Hive，Spark Core)
+     直接使用SQL语句来对大数据进行分析：这是大家所追逐的梦想
+
+     person.txt ==> 存放在HDFS
+     1,zhangsan,30
+     2,lisi,31
+     3,wangwu,32
+
+     Hive表：person
+        id:int name:string age:int
+     导入数据：
+        load ....
+      统计分析
+        select ... from person
+SQL on hadoop:
+    Hive
+    Spark
+    Impala: Cloudera
+    Presto
+    Drill
+
+Hive: on MapReduce
+    SQL ==> MapReduce ==> Hadoop Cluster
+
+Shark: on Spark
+    基于Hive 源码进行改造
+
+Spark SQL: on Spark
+
+Hive on Spark:
+
+共同点： metastore MySQL, 
