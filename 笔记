@@ -1,0 +1,23 @@
+4 types of scoping
+  - global scope
+  - function scope
+  - block scope
+  - module scope
+
+使用var定义，如果先调用了，才VAR，会报错undefined，如果是用全局定义的，是直接报错error
+
+String是deep copy,跟JAVA不一样
+在JS里，String, Number, Boolean都是deep copy
+
+let a1 = [1,2,3]
+let a2 = [1,2,3]
+let ss = '1,2,3'
+console.log(a1 == a2);   ->False
+console.log(a1 == ss);   ->True
+
+判断NaN:自己等于自己，因为NaN是个Number类，但是表示Not A Number.
+
+0/null/undefined/空string/空Array
+
+==: value
+===: value and datatype
