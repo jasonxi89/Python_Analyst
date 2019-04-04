@@ -24,19 +24,23 @@ def get_grade(value):
 
 
 if __name__ == '__main__':
-    spark = SparkSession.builder.appName("Air Analyst").getOrCreate()
+    # spark = SparkSession.builder.appName("project").getOrCreate()
 
     #option("header","true")最上面一行为header,option("inferSchema","true")根据信息值判断信息类型
-    df = spark.read.format("csv")\
-        .option("header","true")\
-        .option("inferSchema","true")\
-        .load("file:///Users/xi/Downloads/Beijing_2008_HourlyPM2.5_created20140325.csv")\
-        .select("Year","Month","Day","hour","Value","Qc name")
+    # df = spark.read.format("csv")\
+    #     .option("header","true")\
+    #     .option("inferSchema","true")\
+    #     .load("file:///Users/xi/data/2009.csv")\
+    #     .select("Year","Month","Day","hour","Value","Qc name")
+    #
+    #
+    # #增加单元格，要制定单元格的类型，就和写sql一样，所以要先处理下类型
+    # grade_function_udf = udf(get_grade,StringType())
+    # #进来一个Value,返回一个grade,并且用grade新增一行
+    # df.withColumn("Grade",grade_function_udf(df['Value']))
+    spark = SparkSession.builder.appName("project").getOrCreate()
 
-
-    #增加单元格，要制定单元格的类型，就和写sql一样，所以要先处理下类型
-    grade_function_udf = udf(get_grade,StringType())
-    #进来一个Value,返回一个grade,并且用grade新增一行
-    df.withColumn("Grade",grade_function_udf(df['Value']))
+    df = spark.read.format("csv").load("file:///Users/xi/data/2009.csv")
+    df.show()
 
     spark.stop()
