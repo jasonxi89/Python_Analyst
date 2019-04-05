@@ -568,3 +568,9 @@ Q：一条日志多少、多少个字段、一天多少数据
   301-500     危险
 
 数据分析  -> ES -> kibana
+
+
+
+
+
+data17 = spark.read.format("csv").option("header","true").load("file:///Users/xi/data/2017.csv").select("Year", "Month", "Day", "hour", "value","Qc name")
